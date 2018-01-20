@@ -1,10 +1,25 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var createReactClass = require('create-react-class');
-var TodoItem = require('./todoitem');
-var AddItem = require('./additem');
+
 
 require('./css/index.css');
+import { Router, Route, browserHistory } from 'react-router';
+
+var TodoItem = require('./todoitem');
+var AddItem = require('./additem');
+var About = require('./about');
+
+var App = createReactClass({
+    render: function(){
+        return(
+            <Router history = {browserHistory}>
+                <Route path={'/'} component ={TodoComponent}></Route>
+                <Route path={'/about'} component ={About}></Route>
+            </Router>
+        );
+    }
+});
 
 var TodoComponent = createReactClass({
     getInitialState: function(){
@@ -59,4 +74,4 @@ var TodoComponent = createReactClass({
 });
 
 
-ReactDOM.render(<TodoComponent />, document.getElementById('todo-wrapper'));
+ReactDOM.render(<App />, document.getElementById('todo-wrapper'));
